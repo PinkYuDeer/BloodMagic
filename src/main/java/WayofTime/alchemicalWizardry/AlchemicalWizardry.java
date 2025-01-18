@@ -251,6 +251,7 @@ import WayofTime.alchemicalWizardry.common.spell.simple.SpellWateryGrave;
 import WayofTime.alchemicalWizardry.common.spell.simple.SpellWindGust;
 import WayofTime.alchemicalWizardry.common.summoning.SummoningHelperAW;
 import WayofTime.alchemicalWizardry.common.summoning.meteor.Meteor;
+import WayofTime.alchemicalWizardry.common.summoning.meteor.MeteorReagentRegistry;
 import WayofTime.alchemicalWizardry.common.tileEntity.TEAlchemicCalcinator;
 import WayofTime.alchemicalWizardry.common.tileEntity.TEAltar;
 import WayofTime.alchemicalWizardry.common.tileEntity.TEBellJar;
@@ -3321,6 +3322,7 @@ public class AlchemicalWizardry {
 
         DemonVillageLootRegistry.init();
         Meteor.loadConfig();
+        MeteorReagentRegistry.loadConfig();
 
         this.initCompressionHandlers();
     }
@@ -4504,7 +4506,7 @@ public class AlchemicalWizardry {
         return strings;
     }
 
-    @Mod.EventHandler
+    @EventHandler
     public void initCommands(FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandBloodMagic());
     }
