@@ -629,6 +629,30 @@ public class TEAltar extends TEInventory implements IFluidTank, IFluidHandler, I
                 return;
             }
 
+            if (item.isFilledForFree()) {
+                // Fill owner's network to the maximum, affected by altar runes.
+                SoulNetworkHandler.addCurrentEssenceToMaximum(
+                        ownerName,
+                        Integer.MAX_VALUE,
+                        (int) Math.min(Integer.MAX_VALUE, (long) item.getMaxEssence() * this.orbCapacityMultiplier));
+
+                if (totalWorldTime % 4 == 0) {
+                    SpellHelper.sendIndexedParticleToAllAround(
+                            worldObj,
+                            xCoord,
+                            yCoord,
+                            zCoord,
+                            20,
+                            worldObj.provider.dimensionId,
+                            3,
+                            xCoord,
+                            yCoord,
+                            zCoord);
+                }
+
+                return;
+            }
+
             if (fluid != null && fluid.amount >= 1) {
                 int liquidDrained = Math.min(
                         (int) (upgradeLevel >= 2 ? consumptionRate * (1 + consumptionMultiplier) : consumptionRate),
