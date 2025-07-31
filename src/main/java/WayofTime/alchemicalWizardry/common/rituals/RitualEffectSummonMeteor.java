@@ -48,7 +48,8 @@ public class RitualEffectSummonMeteor extends RitualEffect {
             if (entityItem != null && MeteorRegistry.isValidMeteorFocusItem(entityItem.getEntityItem())) {
                 ItemStack stack = entityItem.getEntityItem();
 
-                int meteorID = stack == null? MeteorRegistry.getMeteorIDForItem(entityItem.getEntityItem()) : MeteorRegistry.getMeteorIDForItem(stack);
+                int meteorID = stack == null ? MeteorRegistry.getMeteorIDForItem(entityItem.getEntityItem())
+                        : MeteorRegistry.getMeteorIDForItem(stack);
 
                 int cost = MeteorRegistry.meteorList.get(meteorID).cost;
 
