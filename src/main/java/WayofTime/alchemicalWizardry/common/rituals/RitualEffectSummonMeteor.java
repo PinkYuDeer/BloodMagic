@@ -47,7 +47,6 @@ public class RitualEffectSummonMeteor extends RitualEffect {
         for (EntityItem entityItem : entities) {
             if (entityItem != null && MeteorRegistry.isValidMeteorFocusItem(entityItem.getEntityItem())) {
                 ItemStack stack = entityItem.getEntityItem();
-                if (stack == null || stack.stackSize <= 0) continue;
 
                 int meteorID = MeteorRegistry.getMeteorIDForItem(stack);
                 int cost = MeteorRegistry.meteorList.get(meteorID).cost;
@@ -67,10 +66,10 @@ public class RitualEffectSummonMeteor extends RitualEffect {
                     }
                 }
 
-                stack.stackSize--;
+                if (stack != null && stack.stackSize > 0) stack.stackSize--;
 
-                if (stack.stackSize <= 0) {
-                    world.removeEntity(entityItem);
+                if (stack == null || stack.stackSize <= 0) {
+                    entityItem.setDead();
                 } else {
                     entityItem.setEntityItemStack(stack);
                 }
