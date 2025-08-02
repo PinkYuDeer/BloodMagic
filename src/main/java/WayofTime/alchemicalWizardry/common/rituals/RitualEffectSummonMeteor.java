@@ -40,7 +40,7 @@ public class RitualEffectSummonMeteor extends RitualEffect {
 
         List<EntityItem> entities = world.getEntitiesWithinAABB(
                 EntityItem.class,
-                AxisAlignedBB.getBoundingBox(x, y + 1, z, x + 1, y + 2, z + 1));
+                AxisAlignedBB.getBoundingBox(x - 1, y, z, x + 2, y + 3, z + 1));
 
         if (entities == null) return;
 
